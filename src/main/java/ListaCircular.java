@@ -4,6 +4,26 @@ public class ListaCircular<T> {
     private No<T> cauda;
     private int tamanhoLista;
 
+    public ListaCircular() {
+        this.cauda = null;
+        this.cabeca = null;
+        this.tamanhoLista = 0;
+    }
+
+    public void add(T conteudo) {
+        No<T> novoNo = new No<>(conteudo);
+        if (tamanhoLista == 0) {
+            this.cabeca = novoNo;
+            this.cauda = this.cabeca;
+            this.cabeca.setNoProximo(this.cauda);
+        } else {
+            novoNo.setNoProximo(this.cauda);
+            this.cabeca.setNoProximo(novoNo);
+            this.cauda = novoNo;
+        }
+        this.tamanhoLista++;
+    }
+
     public void remove(int index) {
         if (index >= this.tamanhoLista)
             throw new IndexOutOfBoundsException("O índice é maior que o tamanho da lista.");
@@ -15,7 +35,7 @@ public class ListaCircular<T> {
         } else if (index == 1) {
             this.cauda.setNoProximo(this.cauda.getNoProximo());
         } else {
-            for (int i = 0; i < index-1; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 noAuxiliar = noAuxiliar.getNoProximo();
             }
             noAuxiliar.setNoProximo(noAuxiliar.getNoProximo().getNoProximo());
