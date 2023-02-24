@@ -1,7 +1,7 @@
 public class No<T> {
 
     private T conteudo;
-    private No noProximo;
+    private No<T> noProximo;
 
     public No(T conteudo) {
         this.noProximo = null;
@@ -16,11 +16,11 @@ public class No<T> {
         this.conteudo = conteudo;
     }
 
-    public No getNoProximo() {
+    public No<T> getNoProximo() {
         return noProximo;
     }
 
-    public void setNoProximo(No noProximo) {
+    public void setNoProximo(No<T> noProximo) {
         this.noProximo = noProximo;
     }
 
